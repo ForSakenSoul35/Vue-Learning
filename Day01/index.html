@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id= "app">
+      {{content}}
+    </div>
+    <script>
+      //  创建一个VUE实例 
+      // 实例接收一个对象 作为配置项
+      // el 让vue实例 接管对应的DOM区域下的所有内容（挂载在对应DOM下的一个VUE实例）
+      // data  数据  
+      // {{}}  这是插值表达式
+      var app = new Vue({
+        el:'#app',
+        data:{
+          content:'hello world'
+        }
+      })
+      // 不需要关注DOM的变化 只需要关心对应的逻辑
+      // app.$data 是data的别名
+      // 数据改变，页面也就会发生改变
+      setTimeout(function(){
+        app.$data.content = 'bye world'
+      },2000)
+    </script>
+  </body>
+</html>
