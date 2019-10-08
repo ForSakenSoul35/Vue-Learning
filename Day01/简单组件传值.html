@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+      <div id="app">
+          <input  type="text" v-model="inputValue"/>
+          <!--  input输入框的value值和Vue实例中data的inputValue值做了绑定 -->
+          <button v-on:click ="handleBtnClick">提交</button>
+          <ul>
+            <!--  循环遍历list中的每一项 并把每一项 保存在item中 -->
+            <!--  在li 标签中  使用插值表达式  -->
+            <!-- <li v-for ="item in list " >{{item}}</li> -->
+            <todo-item 
+              v-for ="(item,index) in list " 
+              v-bind:content="item"
+              v-bind:index ='index'
+              @delete = "handleItemDelete"
+              ></todo-item>
+              <!--  -->
+            <!-- 使用v-for指令遍历list中的每一项,每一项都会赋值给item这个变量  然后通过v-bind这个指令
+              使用content接收item这个变量  这样就可以在子组件中接收到父组件传递的数据
+            -->
+            <!-- v-for指令 -->
+          </ul>
+      </div>
+    
+      <script>
+
+        var TodoItem ={
+          props:['content','index'],
+          template:"<li v-on:click='handleItemClick'>{{content}}</li>",
+          methods:{
+            handleItemClick:function(){
+              // 子组件向父组件传值的方式
+              this.$emit('delete',this.index)// 子组件向外触发 一个delete事件
+            }
+          }
+        }
+        var app = new Vue({
+          el:'#app',
+          components: {
+            TodoItem:TodoItem
+          },
+          // data代表 Vue实例的数据
+          data: {
+            list: [],
+            inputValue:''
+          },
+          methods:{
+            handleBtnClick:function(){
+              console.log(this)// 应该指的是这个Vue实例
+              this.list.push(this.inputValue)
+              this.inputValue = ''
+              console.log(this.inputValue)
+            },
+            handleItemDelete:function(index){
+              console.log(index)
+              this.list.splice(index,1)
+              
+            }
+          }
+        })
+       
+      </script>
+    </body>
+</html>
