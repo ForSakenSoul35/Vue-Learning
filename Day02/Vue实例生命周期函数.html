@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            var vm = new Vue({
+                el:'#app',
+                data: {},
+                // new Vue（） 之后会做的事情
+                beforeCreate: function(){
+                    // Init Event && LifeStyle
+                    console.log("beforeCreate")
+                },
+                // 执行完之后 会处理一些注入 和 绑定
+                created: function(){
+                    console.log("created")
+                },
+                // 判断实例里 是否有el选项 
+                // 判断是否有template选项  
+                    // 没有： 把el元素外的HTML作为模版进行渲染
+                    // 有：使用模版进行渲染
+                beforeMount:function(){
+                    console.log("before Mount")
+                },
+                //模版结合数据
+                mounted: function(){
+                    console.log("mounted")
+                },
+                // 执行vm.destory()语句
+                beforeDestory: function(){
+                    console.log("before Destory")
+                },
+                destoryed:function(){
+                    console.log("destoryed")
+                },
+                beforeUpdate:function(){
+                    console.log("before Update")
+                },
+                Updated:function(){
+                    console.log("Updated")
+                }
+            })
+        </script>
+    </body>
+</html>
+<!-- 
+    vue 生命周期函数
+    1. 创建阶段
+    before
+ -->

@@ -15,3 +15,16 @@
  - 子组件 使用$emit的方式 向外触发 一个指定的事件 this.$emit('delete',this.index) // 参数1 为指定的事件名,参数2 为事件处理函数接收的参数
  - 父组件 使用@事件名 监听指定的事件,并分配事件处理函数
  10. v-bind 指令简写 v-bind:content === :content
+ 11. 生命周期钩子
+ - beforecreate
+ - created
+ - beforeMount
+ - Mounted
+ - beforeDestory
+ - destoryed
+ - beforeUpdate
+ - Updated
+ 12. 模版语法
+ - 插值表达式
+ - v-html v-text
+
