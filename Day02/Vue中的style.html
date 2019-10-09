@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <!-- 直接操作style
+            内联的方式来定义
+            1. 使用对象
+            2. 使用数组
+        -->
+        <div id="app" >
+            <div :style="styleObj" @click="handleDivClick">
+                hello world
+            </div>
+            
+        </div>
+        <script>
+            var vm = new Vue({
+                el:'#app',
+                data: {
+                    styleObj:{
+                        color:'black',
+                    }
+                },
+                methods :{
+                    handleDivClick: function(){
+                        console.log(this.styleObj.color)
+                        this.styleObj.color = this.styleObj.color === "black" ? "red" : "black" 
+                    }
+                }
+
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+            .activated{
+                color:red;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- class 可以以数组的形式 定义多个变量   表示该属性的值 由多个变量决定 -->
+        <div 
+            id="app" 
+            @click= "handleDivClick"
+            :class="[activated]"
+            
+        >hello world</div>
+        <script>
+            var vm = new Vue({
+                el:'#app',
+                data:{
+                   // isActivated:false
+                   activated:""
+                },
+                methods: {
+                    handleDivClick: function(){
+                        console.log(this.activated)
+                        // this.isActivated = !this.isActivated
+                        this.activated =  this.activated === 'activated' 
+                        ? "" 
+                        : "activated"
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
