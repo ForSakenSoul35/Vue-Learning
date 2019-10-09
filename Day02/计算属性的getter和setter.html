@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            var vm = new Vue({
+                el:'#app',
+                data: {
+                    firstName:'Dell',
+                    lastName:'Lee'
+                },
+                computed: {
+                    fullName: {
+                        get: function(){
+                            return this.firstName + " " + this.lastName 
+                        },
+                        set: function(value){
+                            console.log(value)
+                            var arr = value.split(" ")
+                            this.firstName = arr[0]
+                            this.lastName = arr[1]
+                            //改变fullName依赖的值，就会导致fullName重新渲染，页面上的值也就会重新渲染
+                        }
+                    }
+                }
+
+            })
+        </script>
+    </body>
+</html>
