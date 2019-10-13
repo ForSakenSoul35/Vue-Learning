@@ -27,4 +27,25 @@
  12. 模版语法
  - 插值表达式
  - v-html v-text
+ 13. v-show v-if区别
+ 使用：
+    <div v-if="show"></div>
+    <div v-show="show"></div>
+v-if v-show都是用来控制DOM元素
+DOM元素的显示都是由v-show v-if 后跟的变量决定
+当变量为true时，表示显示DOM元素，两个指令是一致的
+当变量为flase时，表示隐藏DOM，v-if指令是直接将DOM元素移除，在DOM树中是看不到DOM元素的
+而v-show指令，是通过将DOM元素的display属性设置为none，来实现让DOM元素隐藏的
+建议使用v-show指令，因为不会重复操作DOM元素。
+更多应用：使用else
+<div v-if ="show">helloworld</div>
+<div v-else>byeworld</div>
+上述代码的意思是 当show变量的值为true时，显示v-if所在的DOM元素
+当show的值为false 显示v-else所在的元素。
+要注意的是 v-if和v-else要紧邻着使用，否则会报错
 
+更多应用if...else if...else...
+<div v-if="show === 'a' ">显示a</div>
+<div v-if-else ="show === 'b'">显示b</div>
+<div v-else>不显示a要不显示b</div>
+ 
