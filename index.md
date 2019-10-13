@@ -52,5 +52,23 @@ DOM元素的显示都是由v-show v-if 后跟的变量决定
 这三个指令也需要紧邻着使用
 14. key值 使用key属性来标示不同的DOM元素
 15. 列表渲染
+渲染对象
+<div v-for="(item,key,index) of obj">{{item}}</div>
+可以修改对象的原有属性的值
+添加属性：
+遍历对象 不能动态处理对象，比如直接添加对象的属性，但是可以直接修改掉对象的引用
+16. Vue set方法
+对象使用set方法
+Vue.set(vm.obj,"id","123")// 改变对象的属性
+Vue的实例方法 Vue的原型方法
+
+vm.$set(vm.obj,"id","123")
+
+数组使用set方法
+Vue.set(vm.list,1,"a")//  修改数组list的 下标为1 的数据
+vm.$set(vm.list,1,"a")
+
+
+修改数组： 操作原数组的方法  ，修改数组的引用  Vue的set方法
 
  
