@@ -27,7 +27,8 @@
  12. 模版语法
  - 插值表达式
  - v-html v-text
- 13. v-show v-if区别
+ 13. 条件渲染
+ v-show v-if区别
  使用：
     <div v-if="show"></div>
     <div v-show="show"></div>
@@ -44,8 +45,12 @@ DOM元素的显示都是由v-show v-if 后跟的变量决定
 当show的值为false 显示v-else所在的元素。
 要注意的是 v-if和v-else要紧邻着使用，否则会报错
 
-更多应用if...else if...else...
+更多应用：if...else if...else...
 <div v-if="show === 'a' ">显示a</div>
 <div v-if-else ="show === 'b'">显示b</div>
 <div v-else>不显示a要不显示b</div>
+这三个指令也需要紧邻着使用
+14. key值 使用key属性来标示不同的DOM元素
+15. 列表渲染
+
  
