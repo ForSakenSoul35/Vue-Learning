@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>组件细节</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <table>
+            <tbody>
+              <!-- 使用 is -->
+              <tr is = "row "></tr>
+              <tr is = "row "></tr>
+              <tr is = "row "></tr>
+            </tbody>
+          </table>
+        </div>
+        <script>
+            Vue.component('row',{
+              // data 必须是个函数
+              // 为什么？ 这个组件会被调用多次，必须保证每个组件的数据都是相互独立的
+              // 怎么保证？
+              
+              data: function(){
+                return {
+                  content: 'this is content'
+                }
+              },
+              template: '<tr><td>{{content}"}}</td></tr>'
+            })
+            var vm = new Vue({
+                el:'#app',
+                data: {}
+            })
+        </script>
+    </body>
+</html>

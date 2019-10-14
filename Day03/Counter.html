@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <counter ref="couter1" @change = "handleChange"></counter> 
+            <counter ref="couter2" @change = "handleChange"></counter>
+            <div>{{total}}</div>
+        </div>
+        <script>
+            Vue.component('counter',{
+              template:'<div @click="handleDivClick">{{number}}</div>',
+              data: function(){
+                return {
+                  number: 0
+                }
+              },
+              methods:{
+                handleDivClick: function(){
+                  this.number ++
+                  // 子组件向父组件传值
+                  this.$emit('change')
+                }
+              }
+            })
+            var vm = new Vue({
+                el:'#app',
+                data: {
+                  total:0
+                },
+                methods:{
+                  handleChange: function(){
+                    console.log('change')
+                    console.log(this.$refs.couter1.$data.number)
+                    console.log(this.$refs.couter2.$data.number)
+
+                  }
+                }
+            })
+        </script>
+    </body>
+</html>

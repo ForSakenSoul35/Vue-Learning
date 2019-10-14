@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <div ref = 'helloDiv' @click = "handleDivClick">hello world</div>
+        </div>
+        <script>
+            var vm = new Vue({
+                el:'#app',
+                methods: {
+                  handleDivClick: function(){
+                    console.log(this.$refs.helloDiv.innerHTML)
+                    // DOM 元素 ： this.$refs 会保存整个组件的ref 可以通过 this.$refs.属性值 来获取对应的DOM节点
+                  }
+                }
+            })
+        </script>
+    </body>
+</html>
+ <!--  
+  何时使用ref
+  Vue不建议我们在代码里面直接操作DOM
+  但是在处理一些极其复杂的动画效果时 不操作DOM就会比较麻烦
+  如何使用
+  ref
+  ref属性添加在DOM元素上 获取的就是当前的DOM元素
+  ref属性添加在组件上 获取就是当前的组件
+  -->

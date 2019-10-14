@@ -70,5 +70,25 @@ vm.$set(vm.list,1,"a")
 
 
 修改数组： 操作原数组的方法  ，修改数组的引用  Vue的set方法
+16.组件细节
+- 在有些HTML标签中，子标签必须是特定的标签 比如 table中必须有tbody ,select中必须有option
+在特殊情况下 又想在这些子标签中使用子组件。
+解决方案：
+<table>
+  <tbody>
+    <tr is = "row "></tr>
+    <tr is = "row "></tr>
+    <tr is = "row "></tr>
+  </tbody>
+</table>
+- 全局组件定义 data 
+Vue.component('row',{
+  data: function(){
+    return {
+      content:"this is content"
+    }
+  }
+})
+17. ref
 
  
