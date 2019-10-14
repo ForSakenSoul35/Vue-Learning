@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <counter v-on:change ="handleItemChange" :count = '1'></counter>
+          <!-- 
+            <counter count = '0'></counter>
+            <counter :count = '0'></counter>
+            两者的区别：
+            不加冒号 传递给子组件的是一个字符串
+            加冒号 传递给子组件的是一个 数字 0
+            加了冒号之后 双引号内的就是一个jsx表达式
+           -->
+          <counter v-on:change ="handleItemChange"  :count = '0' ></counter> 
+          <!-- 为什么不能写成 <counter /> -->
+          <div>{{total}}</div>
+        </div>
+        <script>
+            var counter = {
+              props:['count'],
+              template: '<div @click = "handleDivClick">{{number}}</div>',
+              data: function(){
+                return {
+                  number: this.count // 为什么不是 this.props.count?
+                }
+              },
+              methods:{
+                handleDivClick: function(){
+                  // 不允许直接修改父组件传递的参数
+                  // this.count++ 这样的操作是不允许的
+                  // 解决方案  在子组件的data 定义变量接收一个props 然后去修改这个数据 
+                  this.number ++
+                  this.$emit('change',1)// 可以接受一个或者多个参数 向外触发事件
+                }
+              }
+            }
+            var vm = new Vue({
+                el:'#app',
+                data: {
+                  total: 1
+                },
+                components:{
+                  counter: counter
+                },
+                methods:{
+                  handleItemChange:function(step){
+                    this.total += step
+                  }
+                }
+            })
+        </script>
+    </body>
+</html>
+<!--  
+  父组件向子组件传值
+  通过属性的形式 
+  子组件要接收
+ -->
