@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <child ></child>
+        </div>
+        <script>
+            Vue.component('child',{
+              // props:['content'],
+              props:{
+                // content: Number
+                //content: [Number,String] // 要么是数字 要么是字符串
+                content:{
+                  type: String,
+                  // required: false, // 参数必传
+                  // default:'hello default',
+                  validator: function(value){
+                    // 校验器 返回true 就表示可以通过 
+                    return (value.length > 5 )
+                  }
+
+                }
+              },
+              template:'<div>{{content}}</div>'
+            })
+            var vm = new Vue({
+                el:'#app',
+                data: {}
+            })
+        </script>
+    </body>
+</html>
+<!-- 
+  props特性：
+  父组件设置了 ，子组件接收了，属性名一一对应
+  在子组件中可以直接使用插值表达式{ { 属性名}} 使用该属性
+  props特性 是不会显示在DOM上的 
+
+  非props属性
+  1. 父组件传递了 子组件没有接收，子组件就没有办法使用了
+  2.非props特性 是会显示在DOM上的 
+  
+ -->

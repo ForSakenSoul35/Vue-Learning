@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>非父子组件传值</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <child content= "Dell"></child>
+          <child content= "Lee"></child>
+        </div>
+        <!-- 
+          解决方案：1. Vuex 2. 发布订阅模式/ 观察者模式  总线机制
+         -->
+        <script>
+            // 给Vue这个类的原型对象添加bus属性 
+            // bus指向一个Vue实例
+            Vue.prototype.bus = new Vue()
+
+            Vue.component('child',{
+              data:function(){
+                return {
+                  selfContent:this.content
+                }
+              },
+              props:['content'],
+              template:'<div @click="handleClick">{{selfContent}}</div>',
+              methods:{
+                handleClick: function(){
+                  this.bus.$emit('change',this.selfContent)
+                }
+              },
+              mounted: function(){
+                var _this = this
+                // this作用域发生改变
+                this.bus.$on('change',function(msg){
+                  _this.selfContent = msg
+                })
+              }
+            })
+            var vm = new Vue({
+                el:'#app',
+                data: {}
+            })
+        </script>
+    </body>
+</html>
