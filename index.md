@@ -90,5 +90,6 @@ Vue.component('row',{
   }
 })
 17. ref
-
+18. 插槽
+使用场景:
  

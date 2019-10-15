@@ -1,0 +1,58 @@
+
+ <html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <child>
+            <h1 slot ="header">Dell1</h1>
+            <h1 slot ="footer">Dell2</h1>
+          </child>
+        </div>
+        <script>
+            Vue.component('child', {
+              
+              template:'<div><p>hello</p><slot name ="header">默认内容</slot></div>'
+              // 还可以设置 默认内容
+            })
+            var vm = new Vue({
+                el:'#app',
+                data: {}
+            })
+        </script>
+    </body>
+</html>
+<!-- <html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <child content ="<p>Dell Lee</p>"></child>
+        </div>
+        <script>
+            Vue.component('child', {
+              props:['content'],
+              template:'<div><p>hello</p><div v-html="this.content">{{content}}</div></div>'
+            })
+            var vm = new Vue({
+                el:'#app',
+                data: {}
+            })
+        </script>
+    </body>
+</html> 
+
+  子组件 除了展示子组件自己的内容
+  还想展示父组件传递的内容
+
+  通过绑定属性 传递DOM结构  代码难以维护
+ -->
+ <!-- 
+   使用slot 还能正确解析DOM元素
+   具名插槽 
+
+  -->
