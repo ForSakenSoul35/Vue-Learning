@@ -5,13 +5,25 @@
     </head>
     <body>
         <div id="app">
-          <child></child>
+          <child>
+              <temlate slot-scope= "props">
+                <li>{{props.item}}</li>
+              </temlate>
+          </child>
         </div>
         <script>
           ript>
             Vue.component('child', {
-              
-              template:'<div>child</div>'
+              data:function(){
+                return {
+                  list: [1,2,3,4]
+                }
+              },
+              template:`<div>
+                          <ul>
+                            <slot v-for ="item of list" :item= item></slot>
+                          </ul>
+                         </div>`
              
             })
             var vm = new Vue({
@@ -21,3 +33,7 @@
         </script>
     </body>
 </html>
+<!--  
+  父组件向子组件传递了一个作用域插槽，作用域插槽必须是一个template开头结尾的标签
+  同时要声明 要从子组件的数据都放在哪 然后还要定义子组件的一个模板信息，表示接收到插槽之后应该怎么显示
+  ->
