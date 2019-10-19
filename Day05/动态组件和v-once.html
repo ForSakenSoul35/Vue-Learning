@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <!-- 使用动态组件 -->
+          <!-- 根据is的变化动态加载不同的组件 -->
+          <component :is ="type"></component>
+          <button @click="handleBtnClick">change</button>
+        </div>
+        <script>     
+            Vue.component('child-one', {            
+              template:'<div v-once>child</div>'  
+            })
+            Vue.component('child-two', {  
+              template:'<div v-once>child</div>'
+             
+            })
+            var vm = new Vue({
+                el:'#app',
+                data: {
+                  type:'child-one'
+                },
+            })
+        </script>
+    </body>
+</html>
+<!-- 
+ v-once指令 提高一些静态内容展示的性能
+-->
