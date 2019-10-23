@@ -15,21 +15,23 @@
             @click= "handleDivClick"
             :class="[activated]"
             
+            
         >hello world</div>
+        <!--  class 由activated这个属性决定， -->
         <script>
             var vm = new Vue({
                 el:'#app',
                 data:{
                    // isActivated:false
-                   activated:""
+                   activated:''
                 },
                 methods: {
                     handleDivClick: function(){
                         console.log(this.activated)
                         // this.isActivated = !this.isActivated
-                        this.activated =  this.activated === 'activated' 
-                        ? "" 
-                        : "activated"
+                        this.activated =  this.activated === '' 
+                        ? 'change' 
+                        : ''
                     }
                 }
             })
