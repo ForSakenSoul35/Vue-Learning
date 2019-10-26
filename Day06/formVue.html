@@ -15,15 +15,39 @@
           <p v-else="checked">没选中</p>
           <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" >
           <!-- 怎么理解？
-            v-model 代表的是value 
+            v-model 这里代表的是checked 选中状态
           -->
           <label for="jack">Jack</label>
-          <input type="checkbox" id="john" value="John" v-model="checkedNames">
+          <input type="checkbox" id="john" value="1" v-model="checkedNames">
+          <!-- 不懂为什么 会将value的值加入到 v-model所绑定的数组？ -->
           <label for="john">John</label>
           <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
           <label for="mike">Mike</label>
           <br>
           <span>Checked names: {{ checkedNames }}</span>
+          <input type="radio" id="one" value="One" v-model="picked">
+          <label for="one">One</label>
+          <br>
+          <input type="radio" id="two" value="Two" v-model="picked">
+          <label for="two">Two</label>
+          <br>
+          <!-- 选中的状态  标示哪个被选中 都是将value属性 添加到 v-model绑定的值 -->
+          <span>Picked: {{ picked }}</span>
+
+          <select v-model="selected">
+            <option disabled value=""> 请选择</option>
+            <!-- 
+              注意上面这个选项存在的意义
+              如果v-model表达式的初始值未能匹配任何选项，select元素将被渲染成为选中状态
+              在IOS中会使用户无法选择第一个选项。因为这样的情况下，iOS不会触发change事件。
+              因此更推荐像上面这样提供一个值为空的禁用选项。
+             -->
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+          </select>
+          <span>Selected:{{selected}}</span>
+
         </div>
         <script>
           /*
@@ -33,6 +57,7 @@
            复选框
            多个复选框 绑定到同一个数组
            单选框
+           下拉框
           */
             Vue.component('child', {
               
@@ -45,9 +70,16 @@
                   inputValue:'hello xhb',
                   textArea:'hello world',
                   checked:true,
-                  checkedNames:[]
+                  checkedNames:[],
+                  picked:'',
+                  selected:''
                 }
             })
         </script>
     </body>
 </html>
+<!-- 
+  对于单选按钮，复选框，以及选择框的选项，v-model指令绑定的值通常是静态字符串，对于复选框也可以是布尔值。
+  但是有时候希望能将值绑定到Vue示例的一个动态属性上，这时可以使用v-bind指令，并且这个属性的值可以不是字符串。
+  
+ -->
