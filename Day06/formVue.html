@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <input v-model="inputValue"></input>
+          <p>Input Value 为{{inputValue}}</p>
+          <textarea v-model="textArea"></textarea>
+          <p>textArea Value 为{{textArea}}</p>
+          <input type="checkbox" id="box"v-model="checked"></input>
+          <label for="box">请选择</label>
+          <p v-if="checked">选中了</p>
+          <p v-else="checked">没选中</p>
+          <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" >
+          <!-- 怎么理解？
+            v-model 代表的是value 
+          -->
+          <label for="jack">Jack</label>
+          <input type="checkbox" id="john" value="John" v-model="checkedNames">
+          <label for="john">John</label>
+          <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+          <label for="mike">Mike</label>
+          <br>
+          <span>Checked names: {{ checkedNames }}</span>
+        </div>
+        <script>
+          /*
+           form表单涉及类型：
+           文本
+           多行文本
+           复选框
+           多个复选框 绑定到同一个数组
+           单选框
+          */
+            Vue.component('child', {
+              
+              template:'<div>child</div>'
+             
+            })
+            var vm = new Vue({
+                el:'#app',
+                data: {
+                  inputValue:'hello xhb',
+                  textArea:'hello world',
+                  checked:true,
+                  checkedNames:[]
+                }
+            })
+        </script>
+    </body>
+</html>
