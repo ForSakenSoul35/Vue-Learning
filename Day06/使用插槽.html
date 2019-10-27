@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <!-- 希望子组件能渲染父组件传递过来的DOM结构 -->
+          <!-- <child content='<p>Dell</p>'></child> -->
+          <child>
+            <!-- 传递：直接将要添加的内容写在子组件内 -->
+            <p slot="slotName">Dell</p>
+          </child>
+        </div>
+        <script>
+            Vue.component('child', {
+              prop:['content'],
+              //  不使用插槽的
+              template:
+              `
+                <div>
+                  <p>hello</p>
+                  <slot>this is defalut</slot>
+                </div>
+              `
+              // 使用 直接使用<slot></slot>
+
+              // 可以为slot添加默认内容  <slot>this is defalut</slot>
+
+              // 具名插槽 
+              // 父组件插入  <p slot="slotName">Dell</p>
+              // 子组件使用 可以为slot添加名称标示 <slot name="slotName">this is defalut</slot>
+             
+            })
+            var vm = new Vue({
+                el:'#app',
+                data: {}
+            })
+        </script>
+    </body>
+</html>

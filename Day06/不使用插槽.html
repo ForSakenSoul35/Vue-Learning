@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <!-- 希望子组件能渲染父组件传递过来的DOM结构 -->
+          <child content='<p>Dell</p>'></child>
+        </div>
+        <script>
+            Vue.component('child', {
+              prop:['content'],
+              //  不使用插槽的
+              template:
+              `
+              <div>
+                child
+                <div>
+                  <p v-html="this.content"></p>
+                </div>
+              </div>
+              `
+             
+            })
+            var vm = new Vue({
+                el:'#app',
+                data: {}
+            })
+        </script>
+    </body>
+</html>
